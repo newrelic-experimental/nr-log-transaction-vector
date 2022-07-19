@@ -1,0 +1,78 @@
+# Specify the srouce for the logs
+[sources.rawlogs]
+type = "file"
+include = [ "/path/to/your/logs/*.log" ]
+read_from = "beginning"
+
+
+# Reduce logs lines to only those that we care about, in this example use case we only care about those with INFO in them and discard the rest
+[transforms.prefilter]
+type = "filter"
+inputs = ["rawlogs"]
+condition = { type = "vrl", source = '''contains!(.message,"INFO")''' }
+
+
+# Extract transaction number and timestamp data from the logs and set some new fields
+[transforms.parse_transaction]
+type = "remap"
+inputs = ["prefilter"]
+source = '''
+
+# Parse the timestamp, just as an example
+. |=  parse_regex!(.message, r'^(?P<timestamp>\d+/\d+/\d+ \d+:\d+:\d+\.\d+)')
+.timestamp = parse_timestamp(.timestamp, "%d/%m/%Y %H:%M:%S%.f") ?? now()
+. |= parse_regex!(.message, r'trans=(?P<TransNumber>\d+)')
+
+# Set a sourceType to make it easier to find in logs
+.sourceType = "ExampleLogTransaction"
+
+# Record the start and end messages in seperate fields
+if (contains!(.message,"TRANSACTION-START")) {
+.messageStart = .message
+} else if (contains!(.message,"TRANSACTION-END")) {
+    .messageEnd = .message
+}
+'''
+
+# Detect transactions by using a reduce transform on TransNumber
+[transforms.reduce]
+type = "reduce"
+inputs = ["parse_transaction"]
+group_by = ["TransNumber"]
+expire_after_ms = 30000
+ends_when = {type = "vrl", source = '''exists(.messageEnd)'''}
+
+[transforms.reduce.merge_strategies]
+message = "concat_newline"
+
+
+#Calculate the duration between log lines, both seconds and microseconds if available in the data
+[transforms.duration]
+type="remap"
+inputs=["reduce"]
+source='''
+.duration, err  = to_int(.timestamp_end) - to_int(.timestamp)
+.durationms, err  = to_int(format_timestamp!(.timestamp_end,"%s%3f")) - to_int(format_timestamp!(.timestamp,"%s%3f"))
+'''
+
+
+# Send data to New Relic directly
+[sinks.newrelic]
+type = "new_relic"
+inputs = ["duration"]
+license_key = "INGEST-LICENCE-KEY-HERE"
+account_id = "ACCOUNT-NUMBER-HERE"
+region = "us"
+compression = "gzip"
+api = "logs"
+
+
+# Send data to file (for testing or log shipping)
+[sinks.file]
+type = "file"
+inputs = ["duration"]
+compression = "none"
+path = "/your/output/path/here/transaction-output.log"
+
+  [sinks.file.encoding]
+  codec = "json"

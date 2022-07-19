@@ -1,0 +1,30 @@
+19/07/2022 14:40:57.150 INFO trans=501 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:40:58.375 INFO trans=501 DELAY=1 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:40:59.150 INFO trans=502 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:40:59.375 INFO trans=502 DELAY=0 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:40:59.400 INFO trans=501 DELAY=2  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:40:59.400 INFO trans=502 DELAY=0  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:41:01.150 INFO trans=503 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:41:03.150 INFO trans=504 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:41:03.375 INFO trans=503 DELAY=2 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:41:03.375 INFO trans=504 DELAY=0 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:41:03.400 INFO trans=504 DELAY=0  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:41:05.150 INFO trans=505 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:41:05.400 INFO trans=503 DELAY=4  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:41:07.150 INFO trans=506 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:41:09.375 INFO trans=505 DELAY=4 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:41:09.375 INFO trans=506 DELAY=2 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:41:09.150 INFO trans=507 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:41:11.150 INFO trans=508 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:41:11.400 INFO trans=506 DELAY=4  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:41:11.375 INFO trans=507 DELAY=2 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:41:13.400 INFO trans=505 DELAY=8  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:41:13.150 INFO trans=509 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:41:13.400 INFO trans=507 DELAY=4  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:41:15.375 INFO trans=508 DELAY=4 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:41:15.150 INFO trans=510 DELAY=0 event='TRANSACTION-START' Some log data about the start of transaction 
+19/07/2022 14:41:15.375 INFO trans=510 DELAY=0 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:41:15.400 INFO trans=510 DELAY=0  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:41:16.375 INFO trans=509 DELAY=3 event='TRANSACTION-MIDDLE' Some intermediatary log line
+19/07/2022 14:41:19.400 INFO trans=508 DELAY=8  event='TRANSACTION-END' Some more log information about the end of the transaction
+19/07/2022 14:41:19.400 INFO trans=509 DELAY=6  event='TRANSACTION-END' Some more log information about the end of the transaction
