@@ -1,4 +1,4 @@
-# Specify the srouce for the logs
+# Specify the source for the logs
 [sources.rawlogs]
 type = "file"
 include = [ "/path/to/your/logs/*.log" ]
