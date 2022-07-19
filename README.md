@@ -27,6 +27,12 @@ In the example use case our transactions can be identitifed by a common transact
 
 The example use case also shows how you might parse and extract a timestamp from a log record to be used as the transaction timestamp.
 
+For instance in the following input transaction 505 takes 8 seconds from start to finish. You can see how the three log lines are reduced to one transactional log line:
+
+![Input logs](input-log.png)
+![Output log](output.png)
+
+
 ## Example data
 Some example data for both the source and sink output can be found in the [data-generator](./data-generator/) folder. There is also a test script [`multiple.sh`](./data-generator/multiple.sh) that allows you to generate example transactions that interleave.
 
